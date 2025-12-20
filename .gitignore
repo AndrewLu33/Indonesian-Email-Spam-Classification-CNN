@@ -1,0 +1,24 @@
+# Ignore environments
+.venv/
+env/
+venv/
+*.pyc
+__pycache__/
+
+# Ignore model folders
+outputs/models/bert_tokenizer/
+outputs/models/model_bert_cnn/
+
+# Ignore large files
+*.h5
+*.pkl
+*.csv
+
+# Except: keep tfidf vectorizer & small models
+!outputs/models/model_tfidf_cnn.h5
+!outputs/models/tfidf_vectorizer.pkl
+!outputs/models/tokenizer.pkl
+!outputs/models/label_encoder.pkl
+
+# Ignore notebook checkpoints
+.ipynb_checkpoints/

@@ -1,0 +1,82 @@
+project:
+  name: "email_spam_detection"
+  version: "1.0"
+  description: "Deep Learning Email Spam Detector using TF-IDF+CNN and IndoBERT+CNN"
+
+# The real parameters are used in the main backend code (src/).
+
+# =====================================================================
+# DATASET CONFIGURATION
+# =====================================================================
+data:
+  raw_path: "data/raw/email_spam_indo.csv"
+  processed_path: "data/processed/email_spam_clean.csv"
+  text_column: "Pesan"
+  label_column: "Kategori"
+  test_size: 0.2
+  val_size: 0.1
+  shuffle: true
+  random_seed: 42
+
+
+# =====================================================================
+# TF-IDF + CNN MODEL CONFIGURATION
+# =====================================================================
+tfidf:
+  max_features: 5000
+  cnn:
+    filters: [128, 64]
+    kernel_size: 5
+    pool_size: 2
+    dense_units: 64
+    dropout_rate: 0.3
+    epochs: 10
+    batch_size: 32
+    optimizer: "adam"
+    loss: "sparse_categorical_crossentropy"
+
+
+# =====================================================================
+# BERT + CNN MODEL CONFIGURATION
+# =====================================================================
+bert:
+  model_name: "indobenchmark/indobert-base-p1"
+  max_length: 128
+  cnn:
+    filters: 128
+    kernel_size: 3
+    dense_units: 128
+    dropout_rate: 0.3
+    epochs: 5
+    batch_size: 16
+    optimizer: "adam"
+    loss: "sparse_categorical_crossentropy"
+
+
+# =====================================================================
+# OUTPUT DIRECTORIES
+# =====================================================================
+paths:
+  base_dir: "."
+  outputs_dir: "outputs"
+  models_dir: "outputs/models"
+  logs_dir: "outputs/logs"
+  plots_dir: "outputs/plots"
+
+
+# =====================================================================
+# APP CONFIGURATION
+# =====================================================================
+app:
+  default_model: "IndoBERT + CNN"
+  max_text_length: 1000
+
+
+# =====================================================================
+# LOGGING CONFIGURATION
+# =====================================================================
+logging:
+  level: "INFO"
+  save_training_plots: true
+  save_confusion_matrix: true
+  save_classification_report: true

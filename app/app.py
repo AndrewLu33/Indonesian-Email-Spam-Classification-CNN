@@ -15,7 +15,7 @@ st.set_page_config(
 st.title("📧 Email Spam Detection")
 st.write(
     "Aplikasi untuk mendeteksi apakah suatu email termasuk **SPAM** "
-    "atau **NON-SPAM** menggunakan model Machine Learning."
+    "atau **NON-SPAM** "
 )
 
 # ======================================================
